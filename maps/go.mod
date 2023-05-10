@@ -1,3 +1,3 @@
-module map
+module maps
 
 go 1.20
