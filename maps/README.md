@@ -1,4 +1,4 @@
-# Map
+# Maps
 
 Leia os comentários do código para ter uma explicação sobre `maps`.
 
