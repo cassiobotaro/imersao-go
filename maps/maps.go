@@ -73,7 +73,17 @@ func main() {
 	// Veja um exemplo através deste link: https://go.dev/play/p/8ksDHEguqcJ
 	// Uma maneira de contornar este problema é utilizando ferramentas de sincronia como Mutex e canais ou sync.Map como neste exemplo: https://go.dev/play/p/l_pM1LfOTHT
 
-	// TODO: generics
+
+    // Com a adição de generics na versão 1.18 da linguagem Go
+    // Aumentamos a capacidade de reutilização de funções de tipos distintos
+    // mas que apresentam mesmos comportamentos
+    // No exemplo abaixo, a mesma função pode ser utilizada com inteiros
+    // ou string pois ambas as coleções são de elementos comparáveis (==)
+    fmt.Println("Mapa de ocorrência dos valores", calculaOcorrencias([]int{1, 2, 3, 1, 2, 1, 1, 3, 4}))
+    fmt.Println("Mapa de ocorrência dos valores", calculaOcorrencias([]int{1: 3, 4: 6, 99: 0, 1, 1}))
+
+    fmt.Println("Mapa de ocorrência dos valores", calculaOcorrencias([]string{"um", "texto", "partido", "em", "pedaços"}))
+    fmt.Println("Mapa de ocorrência dos valores", calculaOcorrencias([]string{"ab", "bc", "aa", "aa", "bc", "aa"}))
 
 	// Tenta atribuir um valor a uma chave no mapa nulo
 	// Isso deve gerar um pânico, já que o mapa não foi inicializado
@@ -85,4 +95,16 @@ func main() {
 	}()
 	mVar["chave"] = 1
 
+}
+
+// Uma feature interessante e com grande potencial é a utilização de generics
+// como visto no exemplo abaixo.
+// Já existem outras features experimentais sendo testadas na linguagem
+// utilizando generics, veja em https://github.com/golang/exp/
+func calculaOcorrencias[T comparable](colecao []T) map[T]int {
+    ocorrencias := make(map[T]int, len(colecao))
+    for _, item := range colecao{
+        ocorrencias[item]++
+    }
+    return ocorrencias
 }
