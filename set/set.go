@@ -13,7 +13,7 @@ Diferença (A - B) - é o Conjunto de elementos que estão em A, mas não estão
 
 Infelizmente esta estrutura não existe na linguagem de programação Go.
 
-Que tal escrevermos nossa própria versão destae estrutura de dados?
+Que tal escrevermos nossa própria versão desta estrutura de dados?
 
 Achou o desafio interessante? Que tal escrevermos testes e utilizar Generics para tornar ainda mais poderosa nossa implementação?
 

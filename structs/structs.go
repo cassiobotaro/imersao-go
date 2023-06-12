@@ -17,14 +17,13 @@ func main() {
 	// E a criação de uma instância pode ser feita de várias formas
 
 	// Utilizando var
-	var adriano pessoa
-	// Nesse caso os campos da estrutura são preenchidos com os valores zero de cada campo
+	var adriano pessoa // Nesse caso os campos da estrutura são preenchidos com os valores zero de cada campo
 	// string vazia para nome e 0 para idade
 
 	// Utilizando new
 	pedro := new(pessoa)
 	// Assim como o anterior, valores zero são atribuídos a estrutura.
-	// Porém o retorno é um pnteiro para a estrutura
+	// Porém o retorno é um ponteiro para a estrutura
 	// equivalente var pedro *pessoa
 
 	// De maneira literal
@@ -106,8 +105,8 @@ func main() {
 
 	// Estrutura podem ter métodos vinculados a elas.
 	// No exemplo abaixo vemos a estrutura Contador, que apresenta o campo n e dois métodos, N e incrementar.
-	contador := &Contador{}
-	contador.incrementar()
+	contador := Contador{}
+	contador.Incrementar()
 	fmt.Println("Após incremento o contador possui valor: ", contador.N())
 
 	// Métodos vinculados a estrturas também podem ser acessados diretamente em estruturas incluidas
@@ -115,7 +114,7 @@ func main() {
 		Descricao: "Vendas por Minuto",
 	}
 	// Os métodos de estruturas incluídas em outra podem ser acessadas diretamente
-	vendasPorMinuto.incrementar()
+	vendasPorMinuto.Incrementar()
 	fmt.Println("O número de vendas por minuto agora é: ", vendasPorMinuto.N())
 }
 
@@ -125,7 +124,7 @@ type Contador struct{ n int }
 func (c Contador) N() int { return c.n }
 
 // O vínculo aqui acontece a um ponteiro de contador, pois é necessário modificar o valor do campo
-func (c *Contador) incrementar() { c.n++ }
+func (c *Contador) Incrementar() { c.n++ }
 
 // A estrutura Metrica, inclui um contador e seus comportamentos. Além de uma descrição.
 type Metrica struct {

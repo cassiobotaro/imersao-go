@@ -91,6 +91,16 @@ func main() {
 	fmt.Println("Vogais: ", vogais)
 	vogais[3] = "o" // corrigindo de volta as vogais, antes que alguém reclame.
 
+	// Slides criados à partir de outros compartilham os mesmos valores
+	// como exemplo, ano := meses
+	// Se eu modificar o valor presente em ano, a fatia meses também será modificada.
+	ano[0] = "janeiro"
+
+	fmt.Println("Anos e meses representam o mesmo array = ", ano, "==", meses)
+
+	// depois voltamos pro lugar
+	ano[0] = "jan"
+
 	// O mesmo se aplica quando temos mais de uma dimensão.
 	jogoDaVelha[1][2] = "o"
 	fmt.Println(strings.Join([]string{
@@ -113,31 +123,31 @@ func main() {
 		fmt.Println("O valor no índice ", indice, "é ", valor)
 	}
 
-    // Para copiar elementos de um slice em outro, a maneira mais eficiente é utilizando a função copy
-    // Primeiro definimos um fatiamento de tamanho 6
-    primeiraFatia := []int{1, 2, 3, 6, 7, 8}
-    // Depois outro fatiamento com tamnho 3
-    segundaFatia := []int{4, 5, 9}
-    // Para a junção, criamos um fatiamento de tamanho 9
-    fatiaJuncao := make([]int, 9)
-    // primeiro copiamos os três elementos da primeira fatia nas três primeiras posições da nossa fatia de junção
-    copy(fatiaJuncao[:3], primeiraFatia[:3])
-    fmt.Println("Junção: ", fatiaJuncao)
-    // Em seguida, copiamos os dois primeiros elementos da segunda fatia, nas posições 3 e 4 da fatia de junção(fatia de 3 a 5)
-    copy(fatiaJuncao[3:5], segundaFatia[:2])
-    fmt.Println("Junção: ", fatiaJuncao)
-    // Agora copiaremos da terceira posição da primeira fatia até o final, sendo o destino á partir do quinto elemento da fatia de junção
-    copy(fatiaJuncao[5:], primeiraFatia[3:])
-    fmt.Println("Junção: ", fatiaJuncao)
-    // Copia do segundo elemento da segunda fatia até o final, na fatia iniciada na oitava posição do
-    copy(fatiaJuncao[8:], segundaFatia[2:])
-    fmt.Println("Junção: ", fatiaJuncao)
-    // A função copy também é util quando estamos copiando slices de tamanhos diferentes, pois o número de elementos copiados é sempre igual ao slice de menor tamanho.
-    copy(segundaFatia, primeiraFatia)
-    fmt.Println("Após copiar a primeira fatia na segunda: ", segundaFatia)
-    // Repare que nenhum problema ocorre, mesmo a segunda fatia sendo menor que a primeira
+	// Para copiar elementos de um slice em outro, a maneira mais eficiente é utilizando a função copy
+	// Primeiro definimos um fatiamento de tamanho 6
+	primeiraFatia := []int{1, 2, 3, 6, 7, 8}
+	// Depois outro fatiamento com tamnho 3
+	segundaFatia := []int{4, 5, 9}
+	// Para a junção, criamos um fatiamento de tamanho 9
+	fatiaJuncao := make([]int, 9)
+	// primeiro copiamos os três elementos da primeira fatia nas três primeiras posições da nossa fatia de junção
+	copy(fatiaJuncao[:3], primeiraFatia[:3])
+	fmt.Println("Junção: ", fatiaJuncao)
+	// Em seguida, copiamos os dois primeiros elementos da segunda fatia, nas posições 3 e 4 da fatia de junção(fatia de 3 a 5)
+	copy(fatiaJuncao[3:5], segundaFatia[:2])
+	fmt.Println("Junção: ", fatiaJuncao)
+	// Agora copiaremos da terceira posição da primeira fatia até o final, sendo o destino á partir do quinto elemento da fatia de junção
+	copy(fatiaJuncao[5:], primeiraFatia[3:])
+	fmt.Println("Junção: ", fatiaJuncao)
+	// Copia do segundo elemento da segunda fatia até o final, na fatia iniciada na oitava posição do
+	copy(fatiaJuncao[8:], segundaFatia[2:])
+	fmt.Println("Junção: ", fatiaJuncao)
+	// A função copy também é util quando estamos copiando slices de tamanhos diferentes, pois o número de elementos copiados é sempre igual ao slice de menor tamanho.
+	copy(segundaFatia, primeiraFatia)
+	fmt.Println("Após copiar a primeira fatia na segunda: ", segundaFatia)
+	// Repare que nenhum problema ocorre, mesmo a segunda fatia sendo menor que a primeira
 
-    // Não se preocupe se pareceu complexo, a operação de cópia é utilizada para evitar iterações desnecessárias e quando performance for necessária.
+	// Não se preocupe se pareceu complexo, a operação de cópia é utilizada para evitar iterações desnecessárias e quando performance for necessária.
 
 	// Uma maneira de deletar os elementos de uma lista é criando uma nova lista a partir dos elementos que restaram.
 	// !! Cuidado, pois esta operação possui complexidade linear O(n)
@@ -146,16 +156,30 @@ func main() {
 	slice = append(slice[:indiceRemovido], slice[indiceRemovido+1:]...)
 	fmt.Println("Depois de remover um elemento:  ", slice, "len= ", len(slice), "cap=", cap(slice))
 
-    // Com a adição de generics na versão 1.18 da linguagem Go
-    // Aumentamos a capacidade de reutilização de funções de tipos distintos
-    // mas que apresentam mesmos comportamentos
-    // No exemplo abaixo, a mesma função pode ser utilizada com inteiros
-    // ou string pois ambas as coleções são de elementos comparáveis (==)
-    fmt.Println("2 in 1,2,3: ", In([]int{1, 2, 3}, 2))
-    fmt.Println("5 in 1,2,3: ", In([]int{1, 2, 3}, 5))
+	// Com a adição de generics na versão 1.18 da linguagem Go
+	// Aumentamos a capacidade de reutilização de funções de tipos distintos
+	// mas que apresentam mesmos comportamentos
+	// No exemplo abaixo, a mesma função pode ser utilizada com inteiros
+	// ou string pois ambas as coleções são de elementos comparáveis (==)
+	fmt.Println("2 in 1,2,3: ", In([]int{1, 2, 3}, 2))
+	fmt.Println("5 in 1,2,3: ", In([]int{1, 2, 3}, 5))
 
-    fmt.Println("a in a,b,c: ", In([]string{"a", "b", "c"}, "b"))
-    fmt.Println("d in a,b,c: ", In([]string{"a", "b", "c"},  "d"))
+	fmt.Println("a in a,b,c: ", In([]string{"a", "b", "c"}, "b"))
+	fmt.Println("d in a,b,c: ", In([]string{"a", "b", "c"}, "d"))
+
+	// A tentativa de acessar uma posição em um slice
+    // que não exista, irá gerar um pânico
+    // No array este erro se dá em tempo de compilação
+
+    // Slice tem tamanho 5
+    fmt.Println("Slice=", slice, "tamanho=", len(slice))
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Ocorreu um pânico:", r)
+		}
+	}()
+    // Ao acessar a posição len(slice) + 1 (6 neste exemplo), ocorrerá um pânico
+	fmt.Println(slice[len(slice) + 1])
 }
 
 // Uma feature interessante e com grande potencial é a utilização de generics
@@ -163,10 +187,10 @@ func main() {
 // Já existem outras features experimentais sendo testadas na linguagem
 // utilizando generics, veja em https://github.com/golang/exp/
 func In[T comparable](collection []T, n T) bool {
-    for _, item := range collection{
-        if n == item {
-            return true
-        }
-    }
-    return false
+	for _, item := range collection {
+		if n == item {
+			return true
+		}
+	}
+	return false
 }

@@ -9,7 +9,7 @@ import (
 // Para ilustrar como o conhecimento e utilização de uma estrtura de dados no momento correto pode contribuir com a eficiência do seu código vamos ao seguinte código.
 // Criaremos uma coleção de elementos (strings no exemplo) com dois elementos, em seguida faremos múltiplas inserções de novos elementos no início da coleção.
 // Imagine algo assim: ["passaro", "cachorro"] e vamos adicionar "1", em seguida "2".
-// Como a inserção é feita no início da coleção, teriamos ao final ["1", "2", "passaro", "cachorro"]
+// Como a inserção é feita no início da coleção, teriamos ao final ["2", "1", "passaro", "cachorro"]
 
 // Abaixo temos a demonstração do que foi explicado, utilizando slices e listas.
 
@@ -33,7 +33,6 @@ import (
 // Recomendo a leitura da documentação sobre as estruturas.
 // https://pkg.go.dev/container/heap
 // https://pkg.go.dev/container/ring
-
 
 func usaContainerList(numIteracoes int) {
 
