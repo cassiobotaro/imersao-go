@@ -1,1 +1,1 @@
-notebook==7.4.4
+notebook==7.4.5
